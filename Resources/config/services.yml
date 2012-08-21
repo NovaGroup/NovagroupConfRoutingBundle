@@ -1,0 +1,6 @@
+
+services:
+  novagroup.confloader:
+    class: Novagroup\ConfRoutingBundle\Routing\ConfLoader
+    tags: [{name: routing.loader}]
+    arguments: [@file_locator, %conf.routing.bundle%]

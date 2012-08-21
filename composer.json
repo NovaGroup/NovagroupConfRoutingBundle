@@ -1,0 +1,21 @@
+{
+    "name": "novagroup/conf-routing-bundle",
+    "type": "symfony-bundle",
+    "description": "Simple routing format loader for Symfony2",
+    "keywords": ["routing"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erik Dubbelboer",
+            "email": "erik@dubbelboer.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0",
+        "symfony/framework-bundle": ">=2.0,<2.2"
+    },
+    "autoload": {
+        "psr-0": { "Novagroup\\ConfRoutingBundle": "" }
+    },
+    "target-dir": "Novagroup/ConfRoutingBundle"
+}
