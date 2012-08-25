@@ -53,7 +53,7 @@ class ConfLoader extends FileLoader {
                     $this->parsePlaceholders($line);
                     break;
                 default:
-                    throw new \InvalidArgumentException('Invalid rule: ' . implode(' ', $line));
+                    throw new \Exception('Invalid rule: ' . implode(' ', $line));
             }
         }
 
@@ -82,7 +82,7 @@ class ConfLoader extends FileLoader {
         // Does the controller contain the bundle?
         if (strpos($controller, ':') === false) {
             if (empty($this->bundle)) {
-                throw new \InvalidArgumentException(
+                throw new \Exception(
                     'Bundle missing for: ' . implode(' ', $data) .
                     "\nEither add a bundle to the controller or set the default bundle"
                 );
@@ -99,14 +99,14 @@ class ConfLoader extends FileLoader {
 
         foreach ($matches[1] as $match) {
             if (!isset($this->placeholders[$match])) {
-                continue;
+                throw new \Exception('Missing placeholder: ' . $match);
             }
 
             if (!is_null($this->placeholders[$match]['default'])) {
                 $defaults[$match] = $this->placeholders[$match]['default'];
             }
 
-          $requirements[] = $this->placeholders[$match]['requirement'];
+            $requirements[$match] = $this->placeholders[$match]['requirement'];
         }
 
         $this->collection->add($name, new Route($pattern, $defaults, $requirements));
